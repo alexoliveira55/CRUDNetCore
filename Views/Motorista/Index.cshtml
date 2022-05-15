@@ -1,0 +1,53 @@
+﻿@model IEnumerable<CadastroMotorista.Models.Motorista>
+
+@{
+    ViewData["Title"] = ":: Página inicial ::";
+}
+
+<h1>Lista de motoristas</h1>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Cadastrar novo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Cpf)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Idade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ativo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @this.FormataCpf(item.Cpf)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Idade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ativo)
+            </td>
+            <td>
+                <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Codigo">Alterar</a> |
+                <a class="btn btn-dark" asp-action="Details" asp-route-id="@item.Codigo">Visualizar</a> |
+                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Codigo">Excluir</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
